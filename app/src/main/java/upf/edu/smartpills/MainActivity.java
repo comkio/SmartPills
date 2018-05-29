@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MyAppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                MyAppDatabase.class, "database-name").allowMainThreadQueries().build();
+                MyAppDatabase.class, "SPDatabase").allowMainThreadQueries().build();
     }
 
 }
