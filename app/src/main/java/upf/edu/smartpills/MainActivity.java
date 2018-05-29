@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 //overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
                 finish();
                 //else
-                //Intent homeIntent = new Intent(FirstScreenLogo.this, Welcome.class);
+                //Intent homeIntent = new Intent(FirstScreenLogo.this, WelcomeActivity.class);
                 //startActivity(homeIntent);
                 //overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
                 //finish();
