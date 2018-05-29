@@ -11,10 +11,31 @@ import java.util.List;
 public interface MyDao {
 
     @Query("SELECT * FROM user")
-    List<User> getAll();
+    List<User> getAllUsers();
+
+    @Query("SELECT * FROM pill")
+    List<Pill> getAllPills();
+
+    @Query("SELECT * FROM treatment")
+    List<Treatment> getAllTreatments();
+
+    @Query("SELECT * FROM treatmentpill")
+    List<TreatmentPill> getAllTreatmentPills();
+    
+    @Query("SELECT * FROM TreatmentPill WHERE treatmentId LIKE (:treatmentId)")
+    List<TreatmentPill> getTreatmentPills(int treatmentId);
+
+    @Query("SELECT * FROM Pill WHERE id LIKE (:pillId)")
+    Pill getPillbyId(int pillId);
 
     @Insert
-    void insertAll(User... users);
+    void insertAllUsers(User... users);
+
+    @Insert
+    void insertPills(Pill... pills);
+
+    @Insert
+    void insertTreatments(Treatment... treatments);
 
     @Delete
     void delete(User user);
