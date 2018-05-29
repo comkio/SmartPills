@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*        //Logo Image
+        //Logo Image
         logo = findViewById(R.id.logo);
         //Logo animation
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mytransition);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 //finish();
             }
         },SPLASH_TIME_OUT);
-        */
+
 
         //Initialize DataBase
         MyAppDatabase db = Room.databaseBuilder(getApplicationContext(),
