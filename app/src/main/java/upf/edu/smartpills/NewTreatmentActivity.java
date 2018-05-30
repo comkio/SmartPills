@@ -1,6 +1,7 @@
 package upf.edu.smartpills;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.transition.ChangeTransform;
 //import android.support.transition.TransitionManager;
@@ -42,26 +43,29 @@ public class NewTreatmentActivity extends AppCompatActivity {
     ImageButton toB;
     EditText from;
     EditText to;
+    Button confirmBtn;
+    Button cancelBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_treatment);
-
-        //Testing Animation
-        final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
-        final Button button = transitionsContainer.findViewById(R.id.button);
-        final LinearLayout linearLayoutCompat = findViewById(R.id.layout2);
 
         from = findViewById(R.id.editText3);
         to = findViewById(R.id.editText4);
         fromB = findViewById(R.id.from);
         toB = findViewById(R.id.to);
 
+        //AddpillButton
+        //Testing Animation
+        final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
+        final Button button = transitionsContainer.findViewById(R.id.button);
+        final LinearLayout linearLayoutCompat = findViewById(R.id.layout2);
         button.setOnClickListener(new View.OnClickListener() {
             boolean visible;
             boolean isSecondText;
             @Override
             public void onClick(View v) {
+
                 isSecondText = !isSecondText;
                 TransitionManager.beginDelayedTransition(transitionsContainer);
                 visible = !visible;
@@ -74,6 +78,32 @@ public class NewTreatmentActivity extends AppCompatActivity {
             }
 
         });
+
+        //Confirm and Cancel buttons
+        confirmBtn = findViewById(R.id.confirmButton);
+        cancelBtn = findViewById(R.id.cancelButton);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
+                startActivity(homeIntent);
+                //Transition Animation
+                //overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
+                finish();
+            }
+        });
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(NewTreatmentActivity.this, TreatmentsActivity.class);
+                startActivity(homeIntent);
+                //Transition Animation
+                overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
+                finish();
+            }
+        });
+
+
 
 
 

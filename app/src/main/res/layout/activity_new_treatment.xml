@@ -24,11 +24,12 @@
     <EditText
         android:id="@+id/editText8"
         android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:layout_height="39dp"
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:textColor="@color/colorBlack" />
+        android:textColor="@color/colorBlack"
+        android:visibility="visible" />
 
     <ListView
         android:id="@+id/newTreatPills"
@@ -41,12 +42,14 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/confirmButton"
             android:layout_width="200dp"
             android:layout_height="34dp"
             android:background="@drawable/my_rec"
             android:text="Confirm" />
 
         <Button
+            android:id="@+id/cancelButton"
             android:layout_width="200dp"
             android:layout_height="34dp"
             android:background="@drawable/my_rec"
@@ -85,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/back"
+
                     android:text="Pill Name"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -99,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:ems="10"
+                    android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="21dp"
                     android:layout_marginTop="36dp"
-                    android:background="@drawable/back"
+
                     android:text="From"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:ems="10"
+                    android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintBottom_toTopOf="@+id/textView8"
@@ -137,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="19dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/back"
+
                     android:text="To"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -152,6 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:ems="10"
+                    android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintBottom_toTopOf="@+id/textView9"
@@ -166,7 +172,7 @@
                     android:layout_height="20dp"
                     android:layout_marginBottom="2dp"
                     android:layout_marginTop="36dp"
-                    android:background="@drawable/back"
+
                     android:text="Repetition"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/editText5"
@@ -181,6 +187,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="1dp"
                     android:ems="10"
+                    android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintBottom_toBottomOf="parent"
