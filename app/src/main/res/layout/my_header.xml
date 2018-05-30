@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#F4CE42"
+    android:background="@color/colorYellow"
     android:padding="16dp">
 
 
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="#000"
+            android:textColor="@color/colorGrey"
             android:text="Felip Sanchez"
             />
         <TextView
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="#000"
+            android:textColor="@color/colorGrey"
             android:text="Have a nice day!"
             />
     </LinearLayout>

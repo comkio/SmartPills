@@ -5,6 +5,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -25,11 +27,14 @@ public class TreatmentsActivity extends AppCompatActivity {
 
         //Button Action to another activity
         button = findViewById(R.id.floatingActionButton);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent profile = new Intent(TreatmentsActivity.this, NewTreatmentActivity.class);
                 startActivity(profile);
+                //Transition Animation
+                overridePendingTransition(R.anim.left_in, R.anim.left_out);
                 finish();
             }
         });

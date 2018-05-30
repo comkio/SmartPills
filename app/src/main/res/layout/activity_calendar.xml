@@ -14,8 +14,8 @@
         android:layout_gravity="start"
         android:background="#fff"
         app:headerLayout="@layout/my_header"
-        app:itemIconTint="#000"
-        app:itemTextColor="#000"
+        app:itemIconTint="@color/colorGrey"
+        app:itemTextColor="@color/colorGrey"
         app:menu="@menu/my_menu">
 
     </android.support.design.widget.NavigationView>
@@ -77,7 +77,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:clickable="true"
-            android:tint="#606060"
+            android:tint="@color/colorGrey"
             app:backgroundTint="?android:attr/colorPressedHighlight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
