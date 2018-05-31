@@ -59,7 +59,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
         //Testing Animation
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button);
-        final LinearLayout linearLayoutCompat = findViewById(R.id.layout2);
+        final ScrollView linearLayoutCompat = findViewById(R.id.layout2);
         button.setOnClickListener(new View.OnClickListener() {
             boolean visible;
             boolean isSecondText;

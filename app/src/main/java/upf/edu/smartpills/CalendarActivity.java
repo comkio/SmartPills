@@ -1,23 +1,24 @@
 package upf.edu.smartpills;
 
-import android.app.Fragment;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -41,9 +42,9 @@ public class CalendarActivity extends AppCompatActivity {
 
         myDrawer.addDrawerListener(myToggle);
         myToggle.syncState();
-        NavigationView nv = findViewById(R.id.nv);
+     //   NavigationView nv = findViewById(R.id.nv);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setupDrawerContent(nv);
+
 
         //Getting the name
         //nombre = findViewById(R.id.textView);
@@ -87,14 +88,24 @@ public class CalendarActivity extends AppCompatActivity {
 
 
     }
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        if(myToggle.onOptionsItemSelected(item))
-           return true;
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                myDrawer.openDrawer(GravityCompat.START);
+                return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -109,47 +120,38 @@ public class CalendarActivity extends AppCompatActivity {
         imageCamera.setImageBitmap(bitmap);
     }
 
-    public void selectItemDrawer(MenuItem item){
+    private void setupNavigationDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        TextView textView = (TextView) findViewById(R.id.textView);
+                        switch (menuItem.getItemId()) {
+                            case R.id.about:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                myDrawer.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.umaual:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                myDrawer.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.settings:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                myDrawer.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.restart:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                myDrawer.closeDrawer(GravityCompat.START);
+                                return true;
 
-        android.support.v4.app.Fragment myFragment = null;
-
-        Class fragmentClass;
-        switch(item.getItemId()){
-            case R.id.about:
-                fragmentClass = About.class;
-                break;
-            case R.id.umaual:
-                fragmentClass = UserManual.class;
-                break;
-            case R.id.settings:
-                fragmentClass = Settings.class;
-                break;
-            case R.id.restart:
-                fragmentClass = Restart.class;
-                break;
-            default:
-                fragmentClass = About.class;
-        }
-        try{
-            myFragment = (android.support.v4.app.Fragment) fragmentClass.newInstance();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        FragmentManager fragmentManager =  getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flcontent,myFragment).commit();
-        item.setChecked(true);
-        setTitle(item.getTitle());
-        myDrawer.closeDrawers();
+                        }
+                        return true;
+                    }
+                });
     }
 
-    private void setupDrawerContent(NavigationView navigationView){
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectItemDrawer(item);
-                return true;
-
-            }
-        });
-    }
 }
