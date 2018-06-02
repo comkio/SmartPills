@@ -180,4 +180,13 @@ public class NewTreatmentActivity extends AppCompatActivity {
         recogerFecha.show();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent profile = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
+        startActivity(profile);
+        //Transition Animation
+        overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
+        finish();
+    }
 }

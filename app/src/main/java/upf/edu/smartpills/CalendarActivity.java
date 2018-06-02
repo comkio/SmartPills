@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,14 +37,15 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Menu Icon
         myDrawer = findViewById(R.id.myDrawer);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
 
         myDrawer.addDrawerListener(myToggle);
         myToggle.syncState();
-     //   NavigationView nv = findViewById(R.id.nv);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         //Getting the name
@@ -98,8 +100,9 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                myDrawer.openDrawer(GravityCompat.START);
+                NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -109,8 +112,7 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //NavUtils.navigateUpFromSameTask(this);
-        //finish();
+
     }
     //Picture Function
     @Override

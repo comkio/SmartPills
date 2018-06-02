@@ -2,8 +2,10 @@ package upf.edu.smartpills;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,6 +25,8 @@ public class TreatmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treatments);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         //Button Action to another activity
@@ -61,5 +65,26 @@ public class TreatmentsActivity extends AppCompatActivity {
         //}
         //ListAdapter adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, pills);
         //pillList.setAdapter(adapter);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent profile = new Intent(TreatmentsActivity.this, CalendarActivity.class);
+        startActivity(profile);
+        //Transition Animation
+        overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
+        finish();
     }
 }

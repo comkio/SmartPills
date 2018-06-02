@@ -9,17 +9,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".TreatmentsActivity" />
-        <activity android:name=".NewTreatmentActivity" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".CalendarActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".TreatmentsActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".CalendarActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CalendarActivity"/>
+
+
+
+        </activity>
+
+        <activity android:name=".NewTreatmentActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".WelcomeActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
     </application>
 
 </manifest>

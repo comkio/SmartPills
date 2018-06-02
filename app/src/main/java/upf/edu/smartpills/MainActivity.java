@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //If !(table empty)
-                Intent homeIntent = new Intent(MainActivity.this, CalendarActivity.class);
+                //Intent homeIntent = new Intent(MainActivity.this, CalendarActivity.class);
+                Intent homeIntent = new Intent(MainActivity.this, WelcomeActivity.class);
                 startActivity(homeIntent);
                 //Transition Animation
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 //overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
                 finish();
                 //else
-                //Intent homeIntent = new Intent(FirstScreenLogo.this, WelcomeActivity.class);
+                //
                 //startActivity(homeIntent);
                 //overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
                 //finish();
