@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/loading" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="177dp"
@@ -21,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_nom"
         android:layout_width="183dp"
         android:layout_height="57dp"
         android:layout_marginBottom="172dp"
