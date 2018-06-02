@@ -87,4 +87,14 @@ public class TreatmentsActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
         finish();
     }
+    @Override
+    public Intent getSupportParentActivityIntent(){
+        Intent profile = new Intent(TreatmentsActivity.this, CalendarActivity.class);
+        return profile;
+    }
+    @Override
+    public Intent getParentActivityIntent(){
+        Intent profile = new Intent(TreatmentsActivity.this, CalendarActivity.class);
+        return profile;
+    }
 }

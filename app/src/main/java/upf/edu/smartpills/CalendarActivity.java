@@ -16,11 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity {
@@ -33,11 +36,14 @@ public class CalendarActivity extends AppCompatActivity {
     TextView  day;
     Button btnCamera;
     ImageView imageCamera;
+    ListView listCalendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        listCalendar = findViewById(R.id.listCalendar);
         //Menu Icon
         myDrawer = findViewById(R.id.myDrawer);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
@@ -71,7 +77,15 @@ public class CalendarActivity extends AppCompatActivity {
         day.append(mydat[0]);
 
 
-
+        //List to be shown in the ListView
+        //Need List of pill name form DB
+        //String[] todayPills =null;
+        //final ArrayList<String> list = new ArrayList<String>();
+        //for (int i = 0; i < todayPills.length; ++i) {
+//            list.add(todayPills[i]);
+  //      }
+    //    ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+      //  listCalendar.setAdapter(adapter);
 
 
 
@@ -156,4 +170,13 @@ public class CalendarActivity extends AppCompatActivity {
                 });
     }
 
+
+    @Override
+    public Intent getSupportParentActivityIntent(){
+        return getSupportParentActivityIntent();
+    }
+    @Override
+    public Intent getParentActivityIntent(){
+        return getSupportParentActivityIntent();
+    }
 }

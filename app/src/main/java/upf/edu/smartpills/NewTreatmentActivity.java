@@ -10,12 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import com.transitionseverywhere.ChangeText;
 import com.transitionseverywhere.TransitionManager;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NewTreatmentActivity extends AppCompatActivity {
@@ -41,25 +44,33 @@ public class NewTreatmentActivity extends AppCompatActivity {
 
     ImageButton fromB;
     ImageButton toB;
-    EditText from;
+    EditText from,pillName,repetition;
     EditText to;
     Button confirmBtn;
     Button cancelBtn;
+    ListView pillNamesList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_treatment);
 
+        pillName = findViewById(R.id.editText2);
         from = findViewById(R.id.editText3);
         to = findViewById(R.id.editText4);
+        repetition = findViewById(R.id.editText5);
         fromB = findViewById(R.id.from);
         toB = findViewById(R.id.to);
+        pillNamesList = findViewById(R.id.pillsList);
+
+
+        MyDao dao;
 
         //AddpillButton
-        //Testing Animation
+        //Animation
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button);
         final ScrollView linearLayoutCompat = findViewById(R.id.layout2);
+
         button.setOnClickListener(new View.OnClickListener() {
             boolean visible;
             boolean isSecondText;
@@ -75,6 +86,8 @@ public class NewTreatmentActivity extends AppCompatActivity {
                         new ChangeText().setChangeBehavior(ChangeText.CHANGE_BEHAVIOR_OUT_IN));
                 button.setText(isSecondText ? "DONE" : "Add Pill");
 
+                //Insert the pill
+
             }
 
         });
@@ -88,7 +101,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
                 startActivity(homeIntent);
                 //Transition Animation
-                //overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
+                overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
                 finish();
             }
         });
@@ -102,13 +115,6 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-
-
-        //Calendar
         fromB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +127,19 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 obtenerFecha2();
             }
         });
+
+        /*
+        //List to be shown in the ListView
+        //Need List of pill name form DB
+        String[] pillNames =null;
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < pillNames.length; ++i) {
+            list.add(pillNames[i]);
+        }
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        pillNamesList.setAdapter(adapter);
+*/
+
 
     }
 

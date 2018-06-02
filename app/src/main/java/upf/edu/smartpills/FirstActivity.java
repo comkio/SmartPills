@@ -5,15 +5,11 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
+public class FirstActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT=4000;
     private ImageView logo;
@@ -23,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
 
         //Logo Image
         logo = findViewById(R.id.logo);
@@ -34,21 +31,37 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //If !(table empty)
-                //Intent homeIntent = new Intent(MainActivity.this, CalendarActivity.class);
-                Intent homeIntent = new Intent(MainActivity.this, WelcomeActivity.class);
-                startActivity(homeIntent);
+                int i=0;
+                if(i==0) {
+                    Intent homeIntent = new Intent(FirstActivity.this, WelcomeActivity.class);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    startActivity(homeIntent);
+                    i++;
+                    finish();
+                }else{
+                    Intent homeIntent = new Intent(FirstActivity.this, CalendarActivity.class);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    startActivity(homeIntent);
+                    i++;
+                    finish();
+                }i++;
+
+
+
+
                 //Transition Animation
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
                 //Different type of animations
                 //overridePendingTransition(R.anim.left_in, R.anim.left_out);
                 //overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
                 //overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
-                finish();
+
                 //else
                 //
                 //startActivity(homeIntent);
                 //overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
                 //finish();
+
             }
         },SPLASH_TIME_OUT);
 
