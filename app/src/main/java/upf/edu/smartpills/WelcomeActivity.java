@@ -21,6 +21,8 @@ import java.util.TimerTask;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+
+    EditText nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         //Inici variables per fer el gir.
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button_nom);
-        final EditText edit =  (EditText) findViewById(R.id.editTextW);
+        nombre =  (EditText) findViewById(R.id.editTextW);
 
         //Quan es pitja el boto, que giri i canvii de activity
         button.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +42,8 @@ public class WelcomeActivity extends AppCompatActivity {
             String nom;
 
             public void onClick(View v) {
-                nom = edit.getText().toString();
+                nom = nombre.getText().toString();
+                FirstActivity.db.myDao().insertUsers(new User(nom));
                 animation.start();
                 layout.removeView(button);
                 lalala.removeView(edit);

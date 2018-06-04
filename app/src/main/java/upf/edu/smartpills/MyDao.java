@@ -28,8 +28,11 @@ public interface MyDao {
     @Query("SELECT * FROM Pill WHERE id LIKE (:pillId)")
     Pill getPillbyId(int pillId);
 
+    @Query("SELECT pillId FROM TreatmentPill WHERE treatmentId LIKE (:treatmentId)")
+    List<Integer> getPillsForTreatment(int treatmentId);
+
     @Insert
-    void insertAllUsers(User... users);
+    void insertUsers(User... users);
 
     @Insert
     void insertPills(Pill... pills);
@@ -38,5 +41,31 @@ public interface MyDao {
     void insertTreatments(Treatment... treatments);
 
     @Delete
-    void delete(User user);
+    void deleteUser(User user);
+
+    @Delete
+    void deleteTreatment(Treatment treatment);
+
+    @Delete
+    void deletePill(Pill pill);
+
+    @Delete
+    void deleteTreatmentPill(TreatmentPill treatmentPill);
+
+    @Query("DELETE FROM user")
+    void resetUser();
+
+    @Query("DELETE FROM treatment")
+    void resetTreatment();
+
+    @Query("DELETE FROM pill")
+    void resetPill();
+
+    @Query("DELETE FROM treatmentpill")
+    void resetTreatmentPill();
+
+    @Query("SELECT COUNT(*) FROM user ")
+    int countUsers();
+
+    //pildora por dia
 }
