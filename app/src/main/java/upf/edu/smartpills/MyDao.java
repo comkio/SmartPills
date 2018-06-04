@@ -41,5 +41,5 @@ public interface MyDao {
     void delete(User user);
 
     @Query("SELECT COUNT(*) FROM user ")
-    int nomUSers();
+    int countUsers();
 }

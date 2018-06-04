@@ -14,11 +14,14 @@ public class FirstActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT=4000;
     private ImageView logo;
 
+    MyAppDatabase db = Room.databaseBuilder(getApplicationContext(),MyAppDatabase.class, "SmartPills").allowMainThreadQueries().build();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+
 
 
         //Logo Image
@@ -30,21 +33,21 @@ public class FirstActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //If !(table empty)
-                int i=0;
-                if(i==0) {
+
+
+                if(db.myDao().countUsers()>0) {
                     Intent homeIntent = new Intent(FirstActivity.this, WelcomeActivity.class);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     startActivity(homeIntent);
-                    i++;
+
                     finish();
                 }else{
                     Intent homeIntent = new Intent(FirstActivity.this, CalendarActivity.class);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     startActivity(homeIntent);
-                    i++;
+
                     finish();
-                }i++;
+                }
 
 
 
@@ -65,8 +68,7 @@ public class FirstActivity extends AppCompatActivity {
             }
         },SPLASH_TIME_OUT);
 
-        MyAppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                MyAppDatabase.class, "SPDatabase").allowMainThreadQueries().build();
+
     }
 
 }
