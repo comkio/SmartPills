@@ -18,6 +18,8 @@ import android.widget.ImageView;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+
+    EditText nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
         //Inici variables per fer el gir.
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button_nom);
-        final EditText edit =  (EditText) findViewById(R.id.editTextW);
+        nombre =  (EditText) findViewById(R.id.editTextW);
 
         //Gestionar la introducció del nom
 
@@ -36,9 +38,10 @@ public class WelcomeActivity extends AppCompatActivity {
             ImageView loading = (ImageView) findViewById(R.id.imageView);
             AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
             String nom;
-            boolean isRotated = true;
+
             public void onClick(View v) {
-                nom = edit.getText().toString();
+                nom = nombre.getText().toString();
+                FirstActivity.db.myDao().insertUsers(new User(nom));
                 animation.start();
                 startActivity(new Intent(WelcomeActivity.this, CalendarActivity.class));
 

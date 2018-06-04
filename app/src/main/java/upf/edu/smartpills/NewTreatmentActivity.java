@@ -63,7 +63,6 @@ public class NewTreatmentActivity extends AppCompatActivity {
         pillNamesList = findViewById(R.id.pillsList);
 
 
-        MyDao dao;
 
         //AddpillButton
         //Animation

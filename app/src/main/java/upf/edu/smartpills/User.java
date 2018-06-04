@@ -11,6 +11,10 @@ public class User {
     @PrimaryKey
     String name;
 
+    public User(@NonNull String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

@@ -1,26 +1,33 @@
 package upf.edu.smartpills;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static upf.edu.smartpills.FirstActivity.db;
 
 public class TreatmentsActivity extends AppCompatActivity {
 
 
 
     ListView treatmentList;
-    ListView pillsList;
     FloatingActionButton button;
+    ListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +51,44 @@ public class TreatmentsActivity extends AppCompatActivity {
         });
 
         treatmentList = findViewById(R.id.treatmentsList);
-        pillsList = findViewById(R.id.pillsList);
+        treatmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(
+                        TreatmentsActivity.this);
+                alert.setTitle("Alert!!");
+                alert.setMessage("Are you sure to delete record");
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //do your work here
+                        dialog.dismiss();
+
+                    }
+                });
+                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                alert.show();
+
+
+            }
+        });
         //Putting the treatments name into the listview***
-        //ArrayList<String> treatments = new ArrayList<>();
-        //get all treatment names of db
-        //String[] treatmentsName = db.getTreatmentsName()?;
-        //for (int i = 0; i < treamentsName.length; ++i) {
-        //    treatments.add(values[i]);
+        //String[] tratamientos = new String[];
+        //List<Treatment> t = db.myDao().getAllTreatments();
+        //for (int i = 0; i < t.size(); ++i) {
+         //   tratamientos[i] = t.get(i).getUserName();
+
         //}
-        //ListAdapter adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, treatments);
+        //adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, tratamientos);
         //treatmentList.setAdapter(adapter);
 
         //Putting the pills name into the listview***
