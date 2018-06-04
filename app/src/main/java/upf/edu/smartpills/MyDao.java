@@ -35,7 +35,10 @@ public interface MyDao {
     void insertUsers(User... users);
 
     @Insert
-    void insertPills(Pill... pills);
+    void insertPill(Pill... pills);
+
+    @Insert
+    void insertPills(List<Pill> pills);
 
     @Insert
     void insertTreatments(Treatment... treatments);
@@ -66,6 +69,9 @@ public interface MyDao {
 
     @Query("SELECT COUNT(*) FROM user ")
     int countUsers();
+
+    @Query("SELECT COUNT(*) FROM treatment ")
+    int countTreatments();
 
     //pildora por dia
 }

@@ -22,7 +22,8 @@ public class FirstActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        db = Room.databaseBuilder(getApplicationContext(),MyAppDatabase.class, "SmartPills").allowMainThreadQueries().build();
+        db = Room.databaseBuilder(getApplicationContext(),MyAppDatabase.class, "SmartPills")
+                .fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
         //Logo Image
         logo = findViewById(R.id.logo);

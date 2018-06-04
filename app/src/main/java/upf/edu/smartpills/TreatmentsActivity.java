@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static upf.edu.smartpills.FirstActivity.db;
@@ -34,11 +36,21 @@ public class TreatmentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_treatments);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        treatmentList = findViewById(R.id.treatmentsList);
 
         //Button Action to another activity
         button = findViewById(R.id.floatingActionButton);
 
+        List<String> values = new LinkedList<>();
+
+        int treatmentSize = db.myDao().countTreatments();
+        for (int i = 0; i < treatmentSize; ++i) {
+            values.add(db.myDao().getAllTreatments().get(i).getTreatmentName());
+
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        treatmentList.setAdapter(adapter);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +62,7 @@ public class TreatmentsActivity extends AppCompatActivity {
             }
         });
 
-        treatmentList = findViewById(R.id.treatmentsList);
+
         treatmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -81,26 +93,8 @@ public class TreatmentsActivity extends AppCompatActivity {
 
             }
         });
-        //String[] values = ;
-        //Putting the treatments name into the listview***
-        //String[] tratamientos = new String[];
-        //List<Treatment> t = db.myDao().getAllTreatments();
-        //for (int i = 0; i < t.size(); ++i) {
-         //   tratamientos[i] = t.get(i).getUserName();
 
-        //}
-        //adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, tratamientos);
-        //treatmentList.setAdapter(adapter);
 
-        //Putting the pills name into the listview***
-        //ArrayList<String> pills = new ArrayList<>();
-        //get all pill names of db
-        //String[] pillsName = db.getTreatmentsName()?;
-        //for (int i = 0; i < pillsName.length; ++i) {
-        //    pills.add(values[i]);
-        //}
-        //ListAdapter adapter = new ListAdapter(this, android.R.layout.simple_list_item_1, pills);
-        //pillList.setAdapter(adapter);
     }
 
 

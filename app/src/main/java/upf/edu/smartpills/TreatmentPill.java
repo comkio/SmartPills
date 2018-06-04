@@ -27,6 +27,14 @@ public class TreatmentPill {
 
     int repetition;
 
+
+    public TreatmentPill(String from, int fromHour, String to, int repetition) {
+        this.from = from;
+        this.fromHour = fromHour;
+        this.to = to;
+        this.repetition = repetition;
+    }
+
     public int getId() {
         return id;
     }

@@ -11,7 +11,7 @@ public class User {
     @PrimaryKey
     String name;
 
-    public User(@NonNull String name) {
+    public User(String name) {
         this.name = name;
     }
 

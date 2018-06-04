@@ -6,13 +6,17 @@ import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "name", childColumns = "userName", onUpdate = CASCADE))
+@Entity
 public class Treatment {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
 
-    String userName;
+    String treatmentName;
+
+    public Treatment(String treatmentName) {
+        this.treatmentName = treatmentName;
+    }
 
     public int getId() {
         return id;
@@ -22,12 +26,13 @@ public class Treatment {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getTreatmentName() {
+        return treatmentName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setTreatmentName(String treatmentName) {
+        this.treatmentName = treatmentName;
     }
+
 }
 

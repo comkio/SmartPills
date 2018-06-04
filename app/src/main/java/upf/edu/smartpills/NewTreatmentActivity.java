@@ -27,6 +27,10 @@ import com.transitionseverywhere.TransitionManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
+
+import static upf.edu.smartpills.FirstActivity.db;
 
 public class NewTreatmentActivity extends AppCompatActivity {
 
@@ -44,11 +48,12 @@ public class NewTreatmentActivity extends AppCompatActivity {
 
     ImageButton fromB;
     ImageButton toB;
-    EditText from,pillName,repetition;
+    EditText from,pillName,repetition,quantity,tname;
     EditText to;
     Button confirmBtn;
     Button cancelBtn;
     ListView pillNamesList;
+    List<Pill> pills = new LinkedList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +63,11 @@ public class NewTreatmentActivity extends AppCompatActivity {
         from = findViewById(R.id.editText3);
         to = findViewById(R.id.editText4);
         repetition = findViewById(R.id.editText5);
+        quantity = findViewById(R.id.editText);
         fromB = findViewById(R.id.from);
         toB = findViewById(R.id.to);
         pillNamesList = findViewById(R.id.newTreatPills);
-
+        tname = findViewById(R.id.editText8);
 
 
         //AddpillButton
@@ -69,6 +75,8 @@ public class NewTreatmentActivity extends AppCompatActivity {
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button);
         final ScrollView linearLayoutCompat = findViewById(R.id.layout2);
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             boolean visible;
@@ -85,7 +93,12 @@ public class NewTreatmentActivity extends AppCompatActivity {
                         new ChangeText().setChangeBehavior(ChangeText.CHANGE_BEHAVIOR_OUT_IN));
                 button.setText(isSecondText ? "DONE" : "Add Pill");
 
-                //Insert the pill
+                if(button.getText().toString().equals("DONE")){
+                    Pill newPill = new Pill(pillName.getText().toString(),quantity.getText().toString());
+                    pills.add(newPill);
+                }
+
+
 
             }
 
@@ -97,6 +110,9 @@ public class NewTreatmentActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                db.myDao().insertPills(pills);
+                db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
                 Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
                 startActivity(homeIntent);
                 //Transition Animation

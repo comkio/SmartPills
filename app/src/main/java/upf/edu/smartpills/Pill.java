@@ -7,12 +7,17 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Pill {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
 
     String name;
 
     String quantity;
+
+    public Pill(String name, String quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
 
     public int getId() {
         return id;
