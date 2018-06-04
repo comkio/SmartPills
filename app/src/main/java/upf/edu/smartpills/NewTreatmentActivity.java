@@ -60,7 +60,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
         repetition = findViewById(R.id.editText5);
         fromB = findViewById(R.id.from);
         toB = findViewById(R.id.to);
-        pillNamesList = findViewById(R.id.pillsList);
+        pillNamesList = findViewById(R.id.newTreatPills);
 
 
 

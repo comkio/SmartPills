@@ -81,6 +81,7 @@ public class TreatmentsActivity extends AppCompatActivity {
 
             }
         });
+        //String[] values = ;
         //Putting the treatments name into the listview***
         //String[] tratamientos = new String[];
         //List<Treatment> t = db.myDao().getAllTreatments();
