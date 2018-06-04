@@ -39,4 +39,7 @@ public interface MyDao {
 
     @Delete
     void delete(User user);
+
+    @Query("SELECT COUNT(*) FROM user ")
+    int nomUSers();
 }
