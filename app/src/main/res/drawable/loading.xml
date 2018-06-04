@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/pill_1" android:duration="100"/>
-    <item android:drawable="@drawable/pill_2" android:duration="100"/>
-    <item android:drawable="@drawable/pill_3" android:duration="100"/>
-    <item android:drawable="@drawable/pill_4" android:duration="100"/>
-    <item android:drawable="@drawable/pill_5" android:duration="100"/>
-    <item android:drawable="@drawable/pill_6" android:duration="100"/>
-    <item android:drawable="@drawable/pill_7" android:duration="100"/>
-    <item android:drawable="@drawable/pill_8" android:duration="100"/>
+    <item android:drawable="@drawable/aaa" android:duration="70"/>
+    <item android:drawable="@drawable/aaa1" android:duration="70"/>
+
 </animation-list>

@@ -9,27 +9,30 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="393dp"
-        android:layout_height="593dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/loading"  />
+        app:srcCompat="@drawable/loading" />
 
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="177dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="168dp"
-        android:text="Welcome!"
+        android:layout_height="124dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="240dp"
+        android:text=""
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textSize="39sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextW"
@@ -37,7 +40,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Name"
-
         android:inputType="textPersonName"
         android:singleLine="true"
         android:textStyle="bold"
@@ -54,17 +56,17 @@
         android:layout_height="57dp"
         android:layout_marginBottom="172dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/my_rec"
+        android:elevation="2dp"
         android:text="Submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textStyle="bold"
         android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextW"
         app:layout_constraintVertical_bias="1.0"
-        android:elevation="2dp"
-        android:background="@drawable/my_rec"
 
 
         />
