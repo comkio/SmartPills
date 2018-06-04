@@ -41,7 +41,16 @@ public interface MyDao {
     void insertTreatments(Treatment... treatments);
 
     @Delete
-    void delete(User user);
+    void deleteUser(User user);
+
+    @Delete
+    void deleteTreatment(Treatment treatment);
+
+    @Delete
+    void deletePill(Pill pill);
+
+    @Delete
+    void deleteTreatmentPill(TreatmentPill treatmentPill);
 
     @Query("SELECT COUNT(*) FROM user ")
     int countUsers();
