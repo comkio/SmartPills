@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -29,7 +30,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class CalendarActivity extends AppCompatActivity implements About.OnFragmentInteractionListener{
+public class CalendarActivity extends AppCompatActivity {
 
 
     private DrawerLayout myDrawer;
@@ -61,26 +62,43 @@ public class CalendarActivity extends AppCompatActivity implements About.OnFragm
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+                        FragmentManager fragmentManager = getSupportFragmentManager();
                         boolean fragmentTransaction = false;
                         Fragment fragment = null;
 
                         switch (menuItem.getItemId()) {
                             case R.id.about:
-                                fragment = new About();
-                                fragmentTransaction = true;
+                                fragmentManager.beginTransaction().replace(R.id.flcontent,new About()).commit();
+                                //fragment = new About();
+                                //fragmentTransaction = true;
                                 break;
                             case R.id.umaual:
-                                fragment = new UserManual();
-                                fragmentTransaction = true;
+                                fragmentManager.beginTransaction().replace(R.id.flcontent,new UserManual()).commit();
+                                //fragment = new UserManual();
+                                //fragmentTransaction = true;
                                 break;
                             case R.id.settings:
-                                fragment = new Settings();
-                                fragmentTransaction = true;
+                                fragmentManager.beginTransaction().replace(R.id.flcontent,new Settings()).commit();
+                                //fragment = new Settings();
+                                //fragmentTransaction = true;
                                 break;
                             case R.id.restart:
-                                fragment = new Restart();
-                                fragmentTransaction = true;
+                                fragmentManager.beginTransaction().replace(R.id.myDrawer,new Restart()).commit();
+                                //fragment = new Restart();
+                                //fragmentTransaction = true;
                                 break;
+                            case R.id.btnCamera:
+                                btnCamera = findViewById(R.id.btnCamera);
+                                imageCamera = findViewById(R.id.imageCamera);
+                                btnCamera.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent,0);
+                                    }
+                                });
+                                break;
+
 
                         }
                         if(fragmentTransaction) {
@@ -133,38 +151,38 @@ public class CalendarActivity extends AppCompatActivity implements About.OnFragm
 
 
 
-        /*move to the fragmetn class
-        /// //Camera Pic
-        btnCamera = findViewById(R.id.btnCamera);
-        imageCamera = findViewById(R.id.imageCamera);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,0);
-            }
-        });*/
-
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.my_menu, menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
+      //  MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.menu.my_menu, menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                myDrawer.openDrawer(GravityCompat.START);
-                return true;
-            //...
+        if (myToggle.onOptionsItemSelected(item)) {
+            return true;
+        }else {
+
+            switch(item.getItemId()) {
+                case R.id.about:
+                    Log.d("ActionItemClicked", "About clicked********");
+                    return true;
+                case R.id.umaual:
+                    Log.d("ActionItemClicked", "User Manual clicked");
+                    return true;
+                case R.id.settings:
+                    Log.d("ActionItemClicked", "Settings clicked");
+                    return true;
+                case R.id.restart:
+                    Log.d("ActionItemClicked", "Restart clicked");
+                    return true;
+            }
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -183,41 +201,6 @@ public class CalendarActivity extends AppCompatActivity implements About.OnFragm
         imageCamera.setImageBitmap(bitmap);
     }
 
-    private void setupNavigationDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        TextView textView = (TextView) findViewById(R.id.textView);
-                        switch (menuItem.getItemId()) {
-                            case R.id.about:
-                                menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
-                                myDrawer.closeDrawer(GravityCompat.START);
-                                return true;
-                            case R.id.umaual:
-                                menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
-                                myDrawer.closeDrawer(GravityCompat.START);
-                                return true;
-                            case R.id.settings:
-                                menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
-                                myDrawer.closeDrawer(GravityCompat.START);
-                                return true;
-                            case R.id.restart:
-                                menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
-                                myDrawer.closeDrawer(GravityCompat.START);
-                                return true;
-
-                        }
-                        return true;
-                    }
-                });
-    }
-
-
     @Override
     public Intent getSupportParentActivityIntent(){
         return getSupportParentActivityIntent();
@@ -227,8 +210,4 @@ public class CalendarActivity extends AppCompatActivity implements About.OnFragm
         return getSupportParentActivityIntent();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
