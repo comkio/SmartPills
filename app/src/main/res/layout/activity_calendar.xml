@@ -6,7 +6,13 @@
     android:id="@+id/myDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
@@ -19,88 +25,6 @@
         app:itemTextColor="@color/colorGrey"
         app:menu="@menu/my_menu">
 
+
     </android.support.design.widget.NavigationView>
-
-    <android.support.constraint.ConstraintLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/flcontent">
-
-
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="388dp"
-            android:layout_height="304dp"
-            android:layout_marginBottom="39dp"
-            android:layout_marginTop="37dp"
-            android:theme="@style/DialogTheme"
-            android:weekDayTextAppearance="@style/CalendarWeekDatText"
-            app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="383dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:text="Hello"
-            android:textAlignment="center"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="376dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="9dp"
-            android:text="Today, "
-            android:textAlignment="center"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="58dp"
-            android:layout_height="71dp"
-            android:layout_marginBottom="29dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:clickable="true"
-            android:tint="@color/colorGrey"
-            app:backgroundTint="?android:attr/colorPressedHighlight"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="?android:attr/colorForeground"
-            app:srcCompat="@android:drawable/ic_input_add" />
-
-        <ListView
-            android:layout_width="377dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:id="@+id/listCalendar"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-    </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.DrawerLayout>
