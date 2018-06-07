@@ -38,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
             ImageView loading = (ImageView) findViewById(R.id.imageView);
             AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
             ViewGroup layout = (ViewGroup) button.getParent();
-            ViewGroup lalala = (ViewGroup) edit.getParent();
+            ViewGroup lalala = (ViewGroup) nombre.getParent();
             String nom;
 
             public void onClick(View v) {
@@ -46,7 +46,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 FirstActivity.db.myDao().insertUsers(new User(nom));
                 animation.start();
                 layout.removeView(button);
-                lalala.removeView(edit);
+                lalala.removeView(nombre);
 
                 TextView myTextView = findViewById(R.id.textView4);
                 myTextView.setText("Hola, " + nom);
