@@ -31,13 +31,10 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-<<<<<<< Updated upstream
 import android.widget.Toast;
 import java.util.ArrayList;
-=======
 import static upf.edu.smartpills.FirstActivity.db;
 
->>>>>>> Stashed changes
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
