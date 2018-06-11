@@ -31,13 +31,11 @@ public class WelcomeActivity extends AppCompatActivity {
         //Inici variables per fer el gir.
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button_nom);
-        final EditText edit = findViewById(R.id.editTextW);
-        nombre =  (EditText) findViewById(R.id.editTextW);
+        nombre =  findViewById(R.id.editTextW);
 
         //Quan es pitja el boto, que giri i canvii de activity
         button.setOnClickListener(new View.OnClickListener() {
             ImageView loading = (ImageView) findViewById(R.id.imageView);
-            AnimationDrawable animation = (AnimationDrawable) loading.getDrawable();
             ViewGroup layout = (ViewGroup) button.getParent();
             ViewGroup lalala = (ViewGroup) nombre.getParent();
             String nom;
@@ -45,7 +43,6 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 nom = nombre.getText().toString();
                 FirstActivity.db.myDao().insertUsers(new User(nom));
-                animation.start();
                 layout.removeView(button);
                 lalala.removeView(nombre);
 
@@ -55,9 +52,9 @@ public class WelcomeActivity extends AppCompatActivity {
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() { startActivity(new Intent(WelcomeActivity.this, CalendarActivity.class));
-                    animation.stop();
+
                     }
-                }, 1300);
+                }, 500);
 
 
             }
