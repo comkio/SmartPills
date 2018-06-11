@@ -16,6 +16,7 @@
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">#f4ce42</item>
     </style>
+
     <style name="CalendarWeekDatText" parent="TextAppearance.AppCompat.Button">
         <item name="android:textStyle">bold</item>
     </style>
