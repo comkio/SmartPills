@@ -1,6 +1,7 @@
 package upf.edu.smartpills;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.transition.ChangeTransform;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.transitionseverywhere.ChangeText;
 import com.transitionseverywhere.TransitionManager;
@@ -34,7 +36,7 @@ import static upf.edu.smartpills.FirstActivity.db;
 
 public class NewTreatmentActivity extends AppCompatActivity {
 
-
+    private static Context mContext;
     private static final String CERO = "0";
     private static final String BARRA = "/";
 
@@ -94,14 +96,15 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 button.setText(isSecondText ? "DONE" : "Add Pill");
 
                 if(button.getText().toString().equals("DONE")){
-                    Pill newPill = new Pill(pillName.getText().toString(),quantity.getText().toString());
-                    pills.add(newPill);
+                    if(pillName.getText().toString().length() < 25 && quantity.getText().toString().length()<5) {
+                        Pill newPill = new Pill(pillName.getText().toString(), quantity.getText().toString());
+                        pills.add(newPill);
+                    }else{
+                        CharSequence text = "Inputs too big!";
+                        Toast.makeText(NewTreatmentActivity.mContext, text, Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-
-
             }
-
         });
 
         //Confirm and Cancel buttons

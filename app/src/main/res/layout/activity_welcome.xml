@@ -7,14 +7,22 @@
     android:id="@+id/transitions_container"
     tools:context=".WelcomeActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="246dp"
+        android:layout_height="114dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/loading" />
+        app:layout_constraintVertical_bias="0.118"
+        app:srcCompat="@drawable/pastilleros" />
 
 
     <TextView
@@ -54,7 +62,7 @@
         android:id="@+id/button_nom"
         android:layout_width="183dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/my_rec"
         android:elevation="2dp"
@@ -66,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextW"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.287"
 
 
         />
