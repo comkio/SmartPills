@@ -31,6 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         //Inici variables per fer el gir.
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button_nom);
+        final EditText edit = findViewById(R.id.editTextW);
         nombre =  (EditText) findViewById(R.id.editTextW);
 
         //Quan es pitja el boto, que giri i canvii de activity
