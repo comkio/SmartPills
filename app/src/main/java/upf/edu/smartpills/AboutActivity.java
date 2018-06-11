@@ -13,6 +13,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("About");
         setContentView(R.layout.activity_about);
 
         about = findViewById(R.id.aboutTextView);

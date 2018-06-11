@@ -9,6 +9,14 @@
             android:icon="@drawable/ic_umanual"
             android:title="User Manual" />
         <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/ic_notifications"
+            android:title="Notifications"/>
+        <item
+            android:id="@+id/buy"
+            android:icon="@drawable/ic_buy"
+            android:title="Pharmacy" />
+        <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings" />
@@ -16,10 +24,8 @@
             android:id="@+id/about"
             android:icon="@drawable/ic_info"
             android:title="About" />
-        <item
-            android:id="@+id/notifications"
-            android:icon="@drawable/ic_notifications"
-            android:title="Notifications"/>
+
+
         <item
             android:id="@+id/restart"
             android:icon="@drawable/ic_reset"

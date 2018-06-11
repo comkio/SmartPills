@@ -27,6 +27,7 @@ public class NotificationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Notifications");
         setContentView(R.layout.activity_notifications);
 
 

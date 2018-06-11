@@ -29,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Settings");
         loadLocale();
         setContentView(R.layout.activity_settings);
 
