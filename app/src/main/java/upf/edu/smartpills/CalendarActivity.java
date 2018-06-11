@@ -103,7 +103,46 @@ public class CalendarActivity extends AppCompatActivity
         //    ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         //  listCalendar.setAdapter(adapter);
 
+        final ArrayList<String> pillNames = new ArrayList<String>();
 
+        calendarView.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+            public void onSelectedDayChange(CalendarView calendarView, int year, int month, int dayOfMonth) {
+
+                int yearPill;
+                int monthPill;
+                int dayPill;
+                String date;
+                Log.d("date","hola");
+
+                int tamany = FirstActivity.db.myDao().countTreatmentPills();
+
+
+                Log.d("date","tamany: " + tamany);
+                for (int i = 0; i < tamany; i++) {
+                    date = FirstActivity.db.myDao().getAllTreatmentPills().get(i).getFrom();
+                    Log.d("date", "date: " + date);
+                    String[] parts = date.split("/");
+                    dayPill = Integer.parseInt(parts[0]);
+                    Log.d("date","dia: " + dayPill);
+                    monthPill = Integer.parseInt(parts[1]);
+                    Log.d("date","month: " + monthPill);
+                    yearPill = Integer.parseInt(parts[2]);
+                    Log.d("date","year: " + yearPill);
+
+                    if((dayPill == dayOfMonth) && (monthPill == month) && (yearPill == year)){
+
+                        int pillId = FirstActivity.db.myDao().getAllTreatmentPills().get(i).getPillId();
+                        String pillName = FirstActivity.db.myDao().getPillbyId(pillId).name;
+
+                        pillNames.add(pillName);
+
+                    }
+                }
+            }
+        });
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pillNames);
+        listCalendar.setAdapter(adapter);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
