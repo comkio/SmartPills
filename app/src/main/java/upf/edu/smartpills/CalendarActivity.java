@@ -2,38 +2,23 @@ package upf.edu.smartpills;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,9 +96,11 @@ public class CalendarActivity extends AppCompatActivity
         if (id == R.id.about) {
 
         } else if (id == R.id.umanual) {
-
-            CharSequence text = "Works!";
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+            Intent umanual = new Intent(CalendarActivity.this, UserManualActivity.class);
+            startActivity(umanual);
+            finish();
+            /*CharSequence text = "Works!";
+            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();*/
         } else if (id == R.id.settings) {
 
         } else if (id == R.id.restart) {
