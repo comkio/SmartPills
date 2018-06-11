@@ -90,4 +90,17 @@ public class TreatmentPill {
     public void setFromHour(int fromHour) {
         this.fromHour = fromHour;
     }
+
+    @Override
+    public String toString() {
+        return "TreatmentPill{" +
+                "id=" + id +
+                ", pillId=" + pillId +
+                ", treatmentId=" + treatmentId +
+                ", from='" + from + '\'' +
+                ", fromHour=" + fromHour +
+                ", to='" + to + '\'' +
+                ", repetition=" + repetition +
+                '}';
+    }
 }
