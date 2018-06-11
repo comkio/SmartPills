@@ -110,6 +110,8 @@ public class CalendarActivity extends AppCompatActivity
 
         } else if (id == R.id.restart) {
 
+        }else if (id == R.id.notifications) {
+
         }
 
         DrawerLayout myDrawer = (DrawerLayout) findViewById(R.id.myDrawer);

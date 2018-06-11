@@ -17,9 +17,14 @@
             android:icon="@drawable/ic_info"
             android:title="About" />
         <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/ic_notifications"
+            android:title="Notificatois"/>
+        <item
             android:id="@+id/restart"
             android:icon="@drawable/ic_reset"
             android:title="Restart" />
+
     </group>
 
 </menu>

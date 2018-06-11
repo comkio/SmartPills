@@ -43,7 +43,7 @@ public class TreatmentsActivity extends AppCompatActivity {
 
         List<String> values = new LinkedList<>();
 
-        int treatmentSize = db.myDao().countTreatments();
+        final int treatmentSize = db.myDao().countTreatments();
         for (int i = 0; i < treatmentSize; ++i) {
             values.add(db.myDao().getAllTreatments().get(i).getTreatmentName());
 
@@ -51,6 +51,8 @@ public class TreatmentsActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
         treatmentList.setAdapter(adapter);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,11 +72,15 @@ public class TreatmentsActivity extends AppCompatActivity {
                         TreatmentsActivity.this);
                 alert.setTitle("Alert!!");
                 alert.setMessage("Are you sure to delete record");
+                final int positionToRemove = position;
                 alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //do your work here
+                        //db.myDao().deleteTreatment();
+                        //treatmentList.removeViewAt(positionToRemove);
+                        //adapter.notifyDataSetChanged();
                         dialog.dismiss();
 
                     }
