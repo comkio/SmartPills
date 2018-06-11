@@ -16,12 +16,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class NotificationsActivity extends AppCompatActivity {
 
 
     Button button;
     EditText title,descp;
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +32,15 @@ public class NotificationsActivity extends AppCompatActivity {
 
         title = findViewById(R.id.editText6);
         descp = findViewById(R.id.editText7);
+        spinner = findViewById(R.id.spinner);
+
         button = findViewById(R.id.notifButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                createNotificationChannel(title.getText().toString(),descp.getText().toString());
-                myNotifications(title.getText().toString(),descp.getText().toString());
+                createNotificationChannel(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
+                myNotifications(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
 
             }
         });
@@ -48,12 +52,12 @@ public class NotificationsActivity extends AppCompatActivity {
 
 
 
-    private void createNotificationChannel(String tittle, String desc) {
+    private void createNotificationChannel(String tittle, String desc, String myImportance) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = tittle;
             String description = desc;
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("IMPORTANCE_HIGH", name, importance);
+            NotificationChannel channel = new NotificationChannel(String.valueOf(myImportance), name, importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
@@ -62,8 +66,8 @@ public class NotificationsActivity extends AppCompatActivity {
         }
     }
 
-    public void myNotifications(String title, String desc){
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "IMPORTANCE_HIGH").
+    public void myNotifications(String title, String desc, String importance){
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, importance).
                 setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.drawable.ic_notifications).
                 setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_notifications)).setContentTitle(title).
                 setContentText(desc);

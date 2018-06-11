@@ -74,17 +74,6 @@ public class CalendarActivity extends AppCompatActivity
         day.append(mydat[0]);
 
 
-        //List to be shown in the ListView
-        //Need List of pill name form DB
-        //String[] todayPills =null;
-        //final ArrayList<String> list = new ArrayList<String>();
-        //for (int i = 0; i < todayPills.length; ++i) {
-//            list.add(todayPills[i]);
-        //      }
-        //    ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-        //  listCalendar.setAdapter(adapter);
-
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -94,7 +83,9 @@ public class CalendarActivity extends AppCompatActivity
         int id = menuItem.getItemId();
 
         if (id == R.id.about) {
-
+            Intent profile = new Intent(CalendarActivity.this, AboutActivity.class);
+            startActivity(profile);
+            finish();
         } else if (id == R.id.umanual) {
             Intent umanual = new Intent(CalendarActivity.this, UserManualActivity.class);
             startActivity(umanual);
@@ -102,8 +93,12 @@ public class CalendarActivity extends AppCompatActivity
             /*CharSequence text = "Works!";
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show();*/
         } else if (id == R.id.settings) {
+            Intent profile = new Intent(CalendarActivity.this, SettingsActivity.class);
+            startActivity(profile);
+            finish();
 
         } else if (id == R.id.restart) {
+
 
         }else if (id == R.id.notifications) {
             Intent profile = new Intent(CalendarActivity.this, NotificationsActivity.class);
