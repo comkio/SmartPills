@@ -155,8 +155,9 @@ public class CalendarActivity extends AppCompatActivity
 
         } else if (id == R.id.umanual) {
 
-            CharSequence text = "Works!";
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+            Intent umanual = new Intent(CalendarActivity.this, UserManualActivity.class);
+            startActivity(umanual);
+            finish();
         } else if (id == R.id.settings) {
 
         } else if (id == R.id.restart) {
