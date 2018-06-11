@@ -2,9 +2,11 @@ package upf.edu.smartpills;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -23,22 +25,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    private static final String TAG ="H" ;
     FloatingActionButton button;
     TextView day;
     ImageView imageCamera;
     ListView listCalendar;
+    CalendarView calendarView;
     private TextView nombre;
 
     @Override
@@ -49,6 +59,7 @@ public class CalendarActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         listCalendar = findViewById(R.id.listCalendar);
+        calendarView = findViewById(R.id.calendarView);
         //Menu Icon
         DrawerLayout myDrawer = findViewById(R.id.myDrawer);
         ActionBarDrawerToggle myToggle = new ActionBarDrawerToggle(
@@ -104,6 +115,7 @@ public class CalendarActivity extends AppCompatActivity
         if (id == R.id.about) {
 
         } else if (id == R.id.umanual) {
+
             CharSequence text = "Works!";
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.settings) {
@@ -111,6 +123,9 @@ public class CalendarActivity extends AppCompatActivity
         } else if (id == R.id.restart) {
 
         }else if (id == R.id.notifications) {
+            Intent profile = new Intent(CalendarActivity.this, NotificationsActivity.class);
+            startActivity(profile);
+            finish();
 
         }
 

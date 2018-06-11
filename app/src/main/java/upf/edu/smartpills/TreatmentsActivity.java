@@ -35,7 +35,7 @@ public class TreatmentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treatments);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         treatmentList = findViewById(R.id.treatmentsList);
 
         //Button Action to another activity
@@ -103,18 +103,6 @@ public class TreatmentsActivity extends AppCompatActivity {
 
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public void onBackPressed() {
         Intent profile = new Intent(TreatmentsActivity.this, CalendarActivity.class);
@@ -123,14 +111,5 @@ public class TreatmentsActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
         finish();
     }
-    @Override
-    public Intent getSupportParentActivityIntent(){
-        Intent profile = new Intent(TreatmentsActivity.this, CalendarActivity.class);
-        return profile;
-    }
-    @Override
-    public Intent getParentActivityIntent(){
-        Intent profile = new Intent(TreatmentsActivity.this, CalendarActivity.class);
-        return profile;
-    }
+
 }
