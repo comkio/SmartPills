@@ -1,11 +1,13 @@
 package upf.edu.smartpills;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,31 +15,58 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class NotificationsActivity extends AppCompatActivity {
 
 
     Button button;
+    EditText title,descp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
+
+        title = findViewById(R.id.editText6);
+        descp = findViewById(R.id.editText7);
         button = findViewById(R.id.notifButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myNotifications();
+
+                createNotificationChannel(title.getText().toString(),descp.getText().toString());
+                myNotifications(title.getText().toString(),descp.getText().toString());
+
             }
         });
 
     }
 
-    public void myNotifications(){
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this).
+
+
+
+
+
+    private void createNotificationChannel(String tittle, String desc) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = tittle;
+            String description = desc;
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("IMPORTANCE_HIGH", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void myNotifications(String title, String desc){
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "IMPORTANCE_HIGH").
                 setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.drawable.ic_notifications).
-                setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_notifications)).setContentTitle("Pill Time!").
-                setContentText("Its time for the blue pill;)");
+                setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_notifications)).setContentTitle(title).
+                setContentText(desc);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1,notificationBuilder.build());
     }

@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        >
+                >
 
 
         <LinearLayout
@@ -102,7 +102,7 @@
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="match_parent"
-                    android:layout_height="28dp"
+                    android:layout_height="36dp"
                     android:ems="10"
                     android:hint="___________________"
                     android:inputType="textPersonName"
@@ -127,7 +127,7 @@
                 <EditText
                     android:id="@+id/editText3"
                     android:layout_width="match_parent"
-                    android:layout_height="29dp"
+                    android:layout_height="37dp"
                     android:ems="10"
                     android:hint="___________________"
                     android:inputType="textPersonName"
@@ -150,12 +150,12 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView7"
-                    app:layout_constraintVertical_bias="0.211" />
+                    app:layout_constraintVertical_bias="0.243" />
 
                 <EditText
                     android:id="@+id/editText4"
                     android:layout_width="match_parent"
-                    android:layout_height="27dp"
+                    android:layout_height="32dp"
                     android:layout_marginTop="1dp"
                     android:ems="10"
                     android:hint="___________________"
@@ -194,7 +194,7 @@
                 <EditText
                     android:id="@+id/editText5"
                     android:layout_width="match_parent"
-                    android:layout_height="27dp"
+                    android:layout_height="33dp"
                     android:ems="10"
                     android:hint="___________________"
                     android:inputType="textPersonName"
@@ -207,7 +207,7 @@
                 <EditText
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
-                    android:layout_height="27dp"
+                    android:layout_height="39dp"
                     android:layout_marginTop="16dp"
                     android:ems="10"
                     android:hint="___________________"
