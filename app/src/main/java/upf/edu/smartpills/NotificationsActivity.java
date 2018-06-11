@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class NotificationsActivity extends AppCompatActivity {
 
@@ -42,6 +43,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
                 createNotificationChannel(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
                 myNotifications(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
+                Toast.makeText(NotificationsActivity.this,"Your notificatinos have been modified", Toast.LENGTH_SHORT).show();
 
             }
         });
