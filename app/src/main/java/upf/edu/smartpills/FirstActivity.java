@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class FirstActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT=4000;
+    private static int SPLASH_TIME_OUT=2000;
     private ImageView logo;
     public static MyAppDatabase db;
 

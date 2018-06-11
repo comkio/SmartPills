@@ -1,5 +1,6 @@
 package upf.edu.smartpills;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,8 +31,13 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+<<<<<<< Updated upstream
 import android.widget.Toast;
 import java.util.ArrayList;
+=======
+import static upf.edu.smartpills.FirstActivity.db;
+
+>>>>>>> Stashed changes
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -117,6 +124,37 @@ public class CalendarActivity extends AppCompatActivity
         } else if (id == R.id.settings) {
 
         } else if (id == R.id.restart) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(
+                    CalendarActivity.this);
+            alert.setTitle("Alert!!");
+            alert.setMessage("Are you sure you want to reset all your data?");
+            alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //do your work here
+                    db.myDao().resetTreatmentPill();
+                    db.myDao().resetTreatment();
+                    db.myDao().resetUser();
+                    db.myDao().resetPill();
+                    dialog.dismiss();
+                    Intent login = new Intent(CalendarActivity.this, WelcomeActivity.class);
+                    startActivity(login);
+                    finish();
+
+
+                }
+            });
+            alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.dismiss();
+                }
+            });
+
+            alert.show();
 
         }else if (id == R.id.notifications) {
             Intent profile = new Intent(CalendarActivity.this, NotificationsActivity.class);
