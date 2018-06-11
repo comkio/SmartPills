@@ -114,10 +114,10 @@ public class NewTreatmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 db.myDao().insertPills(pills);
                 db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
-
+                //Instancia de TreatmentPill peta //db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),
+                //        8, to.getText().toString(), Integer.parseInt(repetition.getText().toString())));
                 Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
                 startActivity(homeIntent);
                 //Transition Animation

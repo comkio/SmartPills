@@ -43,6 +43,9 @@ public interface MyDao {
     @Insert
     void insertTreatments(Treatment... treatments);
 
+    @Insert
+    void insertTreatmentPills(TreatmentPill... treatmentPill);
+
     @Delete
     void deleteUser(User user);
 
@@ -72,6 +75,9 @@ public interface MyDao {
 
     @Query("SELECT COUNT(*) FROM treatment ")
     int countTreatments();
+
+    @Query("SELECT COUNT(*) FROM treatmentPill ")
+    int countTreatmentPills();
 
     //pildora por dia
 }
