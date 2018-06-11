@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SmartPills</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -8,11 +9,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_user_manual">UserManualActivity</string>
 
+    <string name="call">Customer Support</string>
+    <string name="how">How has it been? Tell us</string>
+    <string name="language">Language</string>
+    <string name="btn1">SmartPills Forum</string>
+    <string name="btn2">Change Language</string>
+
     <string-array name="notifItems">
         <item>- Notification Importance -</item>
         <item>IMPORTANCE_MIN</item>
         <item>IMPORTANCE_LOW</item>
         <item>IMPORTANCE_HIGH</item>
     </string-array>
-</resources>
 
+</resources>

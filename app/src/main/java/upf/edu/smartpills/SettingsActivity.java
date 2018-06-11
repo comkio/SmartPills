@@ -1,10 +1,14 @@
 package upf.edu.smartpills;
 
 import android.Manifest;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.net.PasswordAuthentication;
+import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
     private int PERMISSION_CODE = 1;
@@ -24,7 +29,11 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_settings);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.app_name));
 
         languages = findViewById(R.id.button3);
         languages.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +49,44 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     private void showChangeLanguageDialog(){
+        final String[] listItem = {"English", "Catalan"};
+        AlertDialog.Builder mbuilder = new AlertDialog.Builder(SettingsActivity.this);
+        mbuilder.setTitle("Choose Language...");
+        mbuilder.setSingleChoiceItems(listItem, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which == 0){
+                    setLocale("En");
+                    recreate();
+                }if(which == 1){
+                    setLocale("Ca");
+                    recreate();
+                }
+                dialog.dismiss();
+            }
+        });
+        AlertDialog mDialog = mbuilder.create();
+        mDialog.show();
 
     }
+
+    private void setLocale(String language) {
+        Locale locale = new Locale(language);
+        locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings",MODE_PRIVATE).edit();
+        editor.putString("My_Lang",language);
+        editor.apply();
+    }
+
+    private void loadLocale(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String languages = sharedPreferences.getString("My_Lang","");
+        setLocale(languages);
+    }
+
     public void onClickLlamada(View v) {
         Intent i = new Intent(Intent.ACTION_CALL);
         i.setData(Uri.parse("tel:666477346"));
