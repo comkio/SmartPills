@@ -97,12 +97,13 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 button.setText(isSecondText ? "DONE" : "Add Pill");
 
                 if(button.getText().toString().equals("DONE")){
-                    if(pillName.getText().toString().length() < 25 && quantity.getText().toString().length()<5) {
+                    if(pillName.getText().toString().length() < 25 && quantity.getText().toString().length()<5
+                            && isNumeric(quantity.getText().toString())) {
                         Pill newPill = new Pill(pillName.getText().toString(), quantity.getText().toString());
                         pills.add(newPill);
                     }else{
                         CharSequence text = "Inputs too big!";
-                        Toast.makeText(NewTreatmentActivity.mContext, text, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -227,6 +228,20 @@ public class NewTreatmentActivity extends AppCompatActivity {
         //Muestro el widget
         recogerFecha.show();
 
+    }
+
+    public static boolean isNumeric(String cadena) {
+
+        boolean resultado;
+
+        try {
+            Integer.parseInt(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
     }
 
     @Override
