@@ -3,8 +3,8 @@
     <string name="app_name">SmartPills</string>
 
     <string name="call">Atenció al client</string>
-    <string name="how">Com ha estat? Explica'ns</string>
-    <string name="language">llenguatge</string>
+    <string name="how">Com ha estat? Explica\'ns</string>
+    <string name="language">Llenguatge</string>
     <string name="btn1">SmartPills Fòrum</string>
-    <string name="btn2">Canviar d'idioma</string>
+    <string name="btn2">Canvi d\'idioma</string>
 </resources>
