@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static upf.edu.smartpills.FirstActivity.db;
+
 import java.util.Calendar;
 
 public class CalendarActivity extends AppCompatActivity
@@ -103,6 +105,37 @@ public class CalendarActivity extends AppCompatActivity
             finish();
 
         } else if (id == R.id.restart) {
+            android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(
+                    CalendarActivity.this);
+            alert.setTitle("Alert!!");
+            alert.setMessage("Are you sure you want to reset all your data?");
+            alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //do your work here
+                    db.myDao().resetTreatmentPill();
+                    db.myDao().resetTreatment();
+                    db.myDao().resetUser();
+                    db.myDao().resetPill();
+                    dialog.dismiss();
+                    Intent login = new Intent(CalendarActivity.this, WelcomeActivity.class);
+                    startActivity(login);
+                    finish();
+
+
+                }
+            });
+            alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.dismiss();
+                }
+            });
+
+            alert.show();
 
 
         }else if (id == R.id.notifications) {
