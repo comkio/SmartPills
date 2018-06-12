@@ -37,7 +37,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         //Quan es pitja el boto, que giri i canvii de activity
         button.setOnClickListener(new View.OnClickListener() {
-            ImageView loading = (ImageView) findViewById(R.id.imageView);
             ViewGroup layout = (ViewGroup) button.getParent();
             ViewGroup lalala = (ViewGroup) nombre.getParent();
             String nom;
