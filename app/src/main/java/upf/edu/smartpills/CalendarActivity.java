@@ -125,7 +125,6 @@ public class CalendarActivity extends AppCompatActivity
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pillNames);
         listCalendar.setAdapter(adapter);
 
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
