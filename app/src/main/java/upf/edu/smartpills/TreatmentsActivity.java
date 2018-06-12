@@ -48,7 +48,7 @@ public class TreatmentsActivity extends AppCompatActivity {
             values.add(db.myDao().getAllTreatments().get(i).getTreatmentName());
 
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
         treatmentList.setAdapter(adapter);
 
@@ -71,7 +71,7 @@ public class TreatmentsActivity extends AppCompatActivity {
                 AlertDialog.Builder alert = new AlertDialog.Builder(
                         TreatmentsActivity.this);
                 alert.setTitle("Alert!!");
-                alert.setMessage("Are you sure to delete record");
+                alert.setMessage("Are you sure you want to delete the treatment?");
                 final int positionToRemove = position;
                 alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
@@ -79,9 +79,19 @@ public class TreatmentsActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //do your work here
                         //db.myDao().deleteTreatment();
-                        //treatmentList.removeViewAt(positionToRemove);
-                        //adapter.notifyDataSetChanged();
+                        String removeTreatmentname = adapter.getItem(positionToRemove);
+                        Treatment removeTreatment;
+                        adapter.remove(removeTreatmentname);
+                        adapter.notifyDataSetChanged();
+                        for (int i = 0; i < treatmentSize; ++i) {
+                            removeTreatment = db.myDao().getAllTreatments().get(i);
+                            if (removeTreatment.getTreatmentName().equals(removeTreatmentname)){
+                                db.myDao().deleteTreatment(removeTreatment);
+                            }
+                        }
                         dialog.dismiss();
+                        //finish();
+                        //startActivity(getIntent());
 
                     }
                 });
