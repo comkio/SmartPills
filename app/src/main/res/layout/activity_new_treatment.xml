@@ -26,8 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="39dp"
         android:ems="10"
+
         android:gravity="center"
         android:inputType="textPersonName"
+        android:singleLine="true"
         android:textColor="@color/colorBlack"
         android:visibility="visible" />
 
@@ -104,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
                     android:ems="10"
+                    android:singleLine="true"
                     android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
@@ -129,6 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
                     android:ems="10"
+                    android:singleLine="true"
                     android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
@@ -196,6 +200,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="33dp"
                     android:ems="10"
+                    android:singleLine="true"
                     android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
@@ -210,6 +215,7 @@
                     android:layout_height="39dp"
                     android:layout_marginTop="16dp"
                     android:ems="10"
+                    android:singleLine="true"
                     android:hint="___________________"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorBlack"
