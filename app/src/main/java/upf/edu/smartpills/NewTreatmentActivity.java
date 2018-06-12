@@ -28,6 +28,8 @@ import android.widget.Toast;
 import com.transitionseverywhere.ChangeText;
 import com.transitionseverywhere.TransitionManager;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -119,14 +121,17 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 if( TextUtils.isEmpty(pillName.getText()) || TextUtils.isEmpty(tname.getText()) || TextUtils.isEmpty(from.getText()) ||
                         TextUtils.isEmpty(to.getText()) || TextUtils.isEmpty(repetition.getText()) || TextUtils.isEmpty(quantity.getText())) {
                     confirmBtn.setError("All fields are required!");
-                    Toast.makeText(getApplicationContext(), "All fields are is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "All fields are empty", Toast.LENGTH_SHORT).show();
                 }else{
                     db.myDao().insertPills(pills);
                     db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
-                    db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),8,to.getText().toString(),Integer.parseInt(repetition.getText().toString())));
+                    //db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),8,to.getText().toString(),Integer.parseInt(repetition.getText().toString())));
                     //Instancia de TreatmentPill peta //db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),
                     //        8, to.getText().toString(), Integer.parseInt(repetition.getText().toString())));
                     Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
+                    DateFormat df = new SimpleDateFormat("h:mm a");
+                    String date = df.format(Calendar.getInstance().getTime());
+                    homeIntent.putExtra("PlanB",pillName.getText() + "-" + date);
                     startActivity(homeIntent);
                     //Transition Animation
                     overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);

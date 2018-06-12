@@ -118,6 +118,11 @@ public class CalendarActivity extends AppCompatActivity
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pillNames);
         listCalendar.setAdapter(adapter);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("PlanB");
+            adapter.add(value);
+        }
 
     }
 
