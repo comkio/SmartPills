@@ -9,6 +9,7 @@ import android.support.transition.ChangeTransform;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -114,15 +115,27 @@ public class NewTreatmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                db.myDao().insertPills(pills);
-                db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
-                //Instancia de TreatmentPill peta //db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),
-                //        8, to.getText().toString(), Integer.parseInt(repetition.getText().toString())));
-                Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
-                startActivity(homeIntent);
-                //Transition Animation
-                overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
-                finish();
+                if( TextUtils.isEmpty(pillName.getText())) {
+                    pillName.setError("Pill name is required!");
+                    Toast.makeText(getApplicationContext(), "Pill name is empty", Toast.LENGTH_SHORT).show();
+
+                }else if(TextUtils.isEmpty(tname.getText())){
+                    tname.setError("Treatment name is required");
+                    Toast.makeText(getApplicationContext(), "Treatment name is empty", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    db.myDao().insertPills(pills);
+                    db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
+                    db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),8,to.getText().toString(),Integer.parseInt(repetition.getText().toString())));
+                    //Instancia de TreatmentPill peta //db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),
+                    //        8, to.getText().toString(), Integer.parseInt(repetition.getText().toString())));
+                    Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
+                    startActivity(homeIntent);
+                    //Transition Animation
+                    overridePendingTransition(R.anim.zoom_forward_in, R.anim.zoom_forward_out);
+                    finish();
+                }
+
             }
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,10 +41,16 @@ public class NotificationsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if( TextUtils.isEmpty(title.getText()) && TextUtils.isEmpty(descp.getText())) {
+                    title.setError("Title is required!");
+                    descp.setError("Description is required!");
+                    Toast.makeText(getApplicationContext(), "Some fields are empty", Toast.LENGTH_SHORT).show();
+                }else{
+                    createNotificationChannel(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
+                    myNotifications(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
+                    Toast.makeText(NotificationsActivity.this,"Your notificatinos have been modified", Toast.LENGTH_SHORT).show();
+                }
 
-                createNotificationChannel(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
-                myNotifications(title.getText().toString(),descp.getText().toString(),spinner.getSelectedItem().toString());
-                Toast.makeText(NotificationsActivity.this,"Your notificatinos have been modified", Toast.LENGTH_SHORT).show();
 
             }
         });
