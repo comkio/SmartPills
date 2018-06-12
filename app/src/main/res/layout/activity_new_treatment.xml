@@ -73,7 +73,7 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         >
-        
+
 
         <LinearLayout
 
@@ -239,15 +239,18 @@
                     android:id="@+id/from"
                     android:layout_width="42dp"
                     android:layout_height="29dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="2dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="36dp"
                     android:background="@drawable/my_rec"
                     android:elevation="2dp"
+                    app:layout_constraintBottom_toTopOf="@+id/to"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/editText3"
                     app:layout_constraintTop_toBottomOf="@+id/editText2"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
                 <ImageButton
@@ -263,7 +266,6 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/editText4"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.582"
                     app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
             </android.support.constraint.ConstraintLayout>

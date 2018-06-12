@@ -32,14 +32,11 @@ import java.util.Calendar;
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    private static final String TAG ="H" ;
     FloatingActionButton button;
     TextView day;
     ImageView imageCamera;
     ListView listCalendar;
     CalendarView calendarView;
-    private TextView nombre;
 
 
     @Override
@@ -62,9 +59,6 @@ public class CalendarActivity extends AppCompatActivity
         NavigationView nv = findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(this);
 
-        //Getting the name
-        //nombre = findViewById(R.id.textView);
-        //nombre.append(" "+USER.GETNAME);
 
         button = findViewById(R.id.floatingActionButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -134,20 +128,22 @@ public class CalendarActivity extends AppCompatActivity
         int id = menuItem.getItemId();
 
         if (id == R.id.about) {
+
             Intent profile = new Intent(CalendarActivity.this, AboutActivity.class);
             startActivity(profile);
             finish();
         } else if (id == R.id.umanual) {
+
             Intent umanual = new Intent(CalendarActivity.this, UserManualActivity.class);
             startActivity(umanual);
             finish();
             /*CharSequence text = "Works!";
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show();*/
         } else if (id == R.id.settings) {
+
             Intent profile = new Intent(CalendarActivity.this, SettingsActivity.class);
             startActivity(profile);
             finish();
-
         } else if (id == R.id.restart) {
             android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(
                     CalendarActivity.this);
@@ -166,27 +162,21 @@ public class CalendarActivity extends AppCompatActivity
                     Intent login = new Intent(CalendarActivity.this, WelcomeActivity.class);
                     startActivity(login);
                     finish();
-
-
                 }
             });
             alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
                     dialog.dismiss();
                 }
             });
-
             alert.show();
-
 
         }else if (id == R.id.notifications) {
             Intent profile = new Intent(CalendarActivity.this, NotificationsActivity.class);
             startActivity(profile);
             finish();
-
         } else if (id == R.id.buy) {
             final AlertDialog.Builder mbuilder = new AlertDialog.Builder(CalendarActivity.this);
             mbuilder.setTitle("Pharmacy");
@@ -203,12 +193,9 @@ public class CalendarActivity extends AppCompatActivity
                     dialog.dismiss();
                 }
             }).create().show();
-
         }
-
         DrawerLayout myDrawer = (DrawerLayout) findViewById(R.id.myDrawer);
         myDrawer.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
