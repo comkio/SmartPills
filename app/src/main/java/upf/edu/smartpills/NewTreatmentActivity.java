@@ -115,15 +115,11 @@ public class NewTreatmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if( TextUtils.isEmpty(pillName.getText())) {
-                    pillName.setError("Pill name is required!");
-                    Toast.makeText(getApplicationContext(), "Pill name is empty", Toast.LENGTH_SHORT).show();
-
-                }else if(TextUtils.isEmpty(tname.getText())){
-                    tname.setError("Treatment name is required");
-                    Toast.makeText(getApplicationContext(), "Treatment name is empty", Toast.LENGTH_SHORT).show();
+                if( TextUtils.isEmpty(pillName.getText()) || TextUtils.isEmpty(tname.getText()) || TextUtils.isEmpty(from.getText()) ||
+                        TextUtils.isEmpty(to.getText()) || TextUtils.isEmpty(repetition.getText()) || TextUtils.isEmpty(quantity.getText())) {
+                    confirmBtn.setError("All fields are required!");
+                    Toast.makeText(getApplicationContext(), "All fields are is empty", Toast.LENGTH_SHORT).show();
                 }else{
-
                     db.myDao().insertPills(pills);
                     db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
                     db.myDao().insertTreatmentPills(new TreatmentPill(from.getText().toString(),8,to.getText().toString(),Integer.parseInt(repetition.getText().toString())));
