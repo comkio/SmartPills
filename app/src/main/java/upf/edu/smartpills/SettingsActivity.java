@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
     private int PERMISSION_CODE = 1;
-    Button languages;
+    Button languages,tw;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +45,15 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        tw = findViewById(R.id.button2);
+        tw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://twitter.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
     }
 
