@@ -20,6 +20,8 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static upf.edu.smartpills.FirstActivity.db;
+
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -48,7 +50,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "User name is empty", Toast.LENGTH_SHORT).show();
                 }else{
                     nom = nombre.getText().toString();
-                    FirstActivity.db.myDao().insertUsers(new User(nom));
+                    db.myDao().insertUsers(new User(nom));
                     layout.removeView(button);
                     lalala.removeView(nombre);
 

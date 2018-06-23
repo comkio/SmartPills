@@ -83,9 +83,15 @@ public class TreatmentsActivity extends AppCompatActivity {
                         Treatment removeTreatment;
                         adapter.remove(removeTreatmentname);
                         adapter.notifyDataSetChanged();
+                        List<Treatment> alltreatments = db.myDao().getAllTreatments();
+                        List<Pill> allpills = db.myDao().getAllPills();
                         for (int i = 0; i < treatmentSize; ++i) {
-                            removeTreatment = db.myDao().getAllTreatments().get(i);
+                            removeTreatment = alltreatments.get(i);
                             if (removeTreatment.getTreatmentName().equals(removeTreatmentname)){
+                                List<TreatmentPill> pillsInTreatment = db.myDao().getTreatmentPillByTreatmentId(removeTreatment.getId());
+                                for (TreatmentPill tp : pillsInTreatment) {
+                                    db.myDao().deletePill(db.myDao().getPillbyId(tp.getPillId()));
+                                }
                                 db.myDao().deleteTreatment(removeTreatment);
                             }
                         }

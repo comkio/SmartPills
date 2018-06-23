@@ -23,13 +23,17 @@ public interface MyDao {
     List<TreatmentPill> getAllTreatmentPills();
     
     @Query("SELECT * FROM TreatmentPill WHERE treatmentId LIKE (:treatmentId)")
-    List<TreatmentPill> getTreatmentPills(int treatmentId);
+    List<TreatmentPill> getTreatmentPillByTreatmentId(int treatmentId);
+
+    @Query("SELECT * FROM TreatmentPill WHERE pillId LIKE (:pillId)")
+    TreatmentPill getTreatmentPillByPillId(int pillId);
 
     @Query("SELECT * FROM Pill WHERE id LIKE (:pillId)")
     Pill getPillbyId(int pillId);
 
     @Query("SELECT pillId FROM TreatmentPill WHERE treatmentId LIKE (:treatmentId)")
     List<Integer> getPillsForTreatment(int treatmentId);
+
 
     @Insert
     void insertUsers(User... users);

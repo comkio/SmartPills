@@ -22,4 +22,11 @@
         <item>IMPORTANCE_HIGH</item>
     </string-array>
 
+    <string-array name="repetition_array">
+        <item>Every day</item>
+        <item>Every other day</item>
+        <item>Once a week</item>
+    </string-array>
+
+
 </resources>

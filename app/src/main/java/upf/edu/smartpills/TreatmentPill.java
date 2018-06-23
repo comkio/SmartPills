@@ -6,29 +6,30 @@ import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-/*@Entity(foreignKeys =
-        {@ForeignKey(entity = Pill.class, parentColumns = "id", childColumns = "pillId", onUpdate = CASCADE),
-                @ForeignKey(entity = Treatment.class, parentColumns = "id", childColumns = "treatmentId", onUpdate = CASCADE)})*/
-@Entity
+@Entity(foreignKeys =
+        {@ForeignKey(entity = Pill.class, parentColumns = "id", childColumns = "pillId",onDelete = CASCADE),
+                @ForeignKey(entity = Treatment.class, parentColumns = "id", childColumns = "treatmentId", onDelete = CASCADE)})
 public class TreatmentPill {
 
-    @PrimaryKey
-    int id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
-    int pillId;
+    private int pillId;
 
-    int treatmentId;
+    private int treatmentId;
 
-    String from;
+    private String from;
 
-    int fromHour;
+    private String fromHour;
 
-    String to;
+    private String to;
 
-    int repetition;
+    private String repetition;
 
 
-    public TreatmentPill(String from, int fromHour, String to, int repetition) {
+    public TreatmentPill(int pillId, int treatmentId, String from, String fromHour, String to, String repetition) {
+        this.pillId = pillId;
+        this.treatmentId = treatmentId;
         this.from = from;
         this.fromHour = fromHour;
         this.to = to;
@@ -75,19 +76,19 @@ public class TreatmentPill {
         this.to = to;
     }
 
-    public int getRepetition() {
+    public String getRepetition() {
         return repetition;
     }
 
-    public void setRepetition(int repetition) {
+    public void setRepetition(String repetition) {
         this.repetition = repetition;
     }
 
-    public int getFromHour() {
+    public String getFromHour() {
         return fromHour;
     }
 
-    public void setFromHour(int fromHour) {
+    public void setFromHour(String fromHour) {
         this.fromHour = fromHour;
     }
 
