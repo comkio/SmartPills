@@ -1,25 +1,18 @@
 package upf.edu.smartpills;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.transitionseverywhere.ChangeText;
-import com.transitionseverywhere.TransitionManager;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,18 +22,15 @@ import java.util.List;
 
 import static upf.edu.smartpills.FirstActivity.db;
 
-//import android.support.transition.TransitionManager;
-
 public class NewTreatmentActivity extends AppCompatActivity {
 
-    private static Context mContext;
     private static final String CERO = "0";
     private static final String BARRA = "/";
 
-    //Calendario para obtener fecha & hora
+    //Calendar to obtain date
     public final Calendar c = Calendar.getInstance();
 
-    //Variables para obtener la fecha
+    //Variables used to obtain date
     final int month = c.get(Calendar.MONTH);
     final int day = c.get(Calendar.DAY_OF_MONTH);
     final int year = c.get(Calendar.YEAR);
@@ -52,7 +42,6 @@ public class NewTreatmentActivity extends AppCompatActivity {
     TextView from, to;
     Button confirmBtn;
     Button cancelBtn;
-    ListView pillNamesList;
     List<Pill> pills = new LinkedList<>();
 
     @Override
@@ -60,6 +49,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_treatment);
 
+        //Obtain each interactable view from the layout
         pillName = findViewById(R.id.editText2);
         from = findViewById(R.id.editText3);
         to = findViewById(R.id.editText4);
@@ -70,17 +60,15 @@ public class NewTreatmentActivity extends AppCompatActivity {
         tname = findViewById(R.id.editText8);
 
 
-        //AddpillButton
-        //Animation
         final ViewGroup transitionsContainer = findViewById(R.id.transitions_container);
         final Button button = transitionsContainer.findViewById(R.id.button);
-        final ScrollView linearLayoutCompat = findViewById(R.id.layout2);
 
-
+        //Add pill button
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                //Check that quantity is not abnormal and save the data in a pill list
                 if (pillName.getText().toString().length() < 25 && quantity.getText().toString().length() < 5
                         && isNumeric(quantity.getText().toString())) {
                     Pill newPill = new Pill(pillName.getText().toString(), quantity.getText().toString());
@@ -89,6 +77,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
                     CharSequence text = "Input's too big!";
                     Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
                 }
+                //Reset the editable view fields to add new pills
                 pillName.setText(null);
                 from.setText(null);
                 to.setText(null);
@@ -104,11 +93,13 @@ public class NewTreatmentActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Error in case of no that in pills list
                 if (pills.isEmpty()) {
                     confirmBtn.setError("Treatment with no pills");
                     Toast.makeText(getApplicationContext(), "All fields are empty", Toast.LENGTH_SHORT).show();
                 } else {
+                    //Add all the items to the DataBase to its respective tables here we hace to be
+                    //careful of the relation between keys
                     db.myDao().insertPills(pills);
                     db.myDao().insertTreatments(new Treatment(tname.getText().toString()));
                     List<Pill> allpills = db.myDao().getAllPills();
@@ -116,9 +107,10 @@ public class NewTreatmentActivity extends AppCompatActivity {
                     int addedPills = pills.size();
                     DateFormat df = new SimpleDateFormat("HH:mm");
                     String date = df.format(Calendar.getInstance().getTime());
+                    //Create a new insert in TreatmentPill relating each pill with their treatment
                     for (int i = 0; i < addedPills; i++) {
-                        db.myDao().insertTreatmentPills(new TreatmentPill(allpills.get(allpills.size()-1-i).id,
-                                alltreatments.get(alltreatments.size()-1).id,from.getText().toString(),
+                        db.myDao().insertTreatmentPills(new TreatmentPill(allpills.get(allpills.size() - 1 - i).getId(),
+                                alltreatments.get(alltreatments.size() - 1).getId(), from.getText().toString(),
                                 date, to.getText().toString(), repetition.getSelectedItem().toString()));
                     }
                     Intent homeIntent = new Intent(NewTreatmentActivity.this, CalendarActivity.class);
@@ -130,6 +122,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
 
             }
         });
+        //GO back doing nothing in case of cancel
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +133,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
                 finish();
             }
         });
+        //Button to add the necessary date to start and finish the treatment
         fromB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,31 +150,21 @@ public class NewTreatmentActivity extends AppCompatActivity {
 
     }
 
+    //Methods to create the calendar and save the date picked by the user
     private void obtenerFecha() {
         DatePickerDialog recogerFecha = new DatePickerDialog(this, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+
                 final int mesActual = month + 1;
-
-                //Formateo el día obtenido: antepone el 0 si son menores de 10
                 String diaFormateado = (dayOfMonth < 10) ? CERO + String.valueOf(dayOfMonth) : String.valueOf(dayOfMonth);
-
-                //Formateo el mes obtenido: antepone el 0 si son menores de 10
                 String mesFormateado = (mesActual < 10) ? CERO + String.valueOf(mesActual) : String.valueOf(mesActual);
-
-                //Muestro la fecha con el formato deseado
                 from.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
 
-
             }
-            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-            /**
-             *También puede cargar los valores que usted desee
-             */
         }, year, month, day);
-        //Muestro el widget
+
         recogerFecha.show();
 
     }
@@ -190,30 +174,19 @@ public class NewTreatmentActivity extends AppCompatActivity {
 
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                //Esta variable lo que realiza es aumentar en uno el mes ya que comienza desde 0 = enero
+
                 final int mesActual = month + 1;
-
-                //Formateo el día obtenido: antepone el 0 si son menores de 10
                 String diaFormateado = (dayOfMonth < 10) ? CERO + String.valueOf(dayOfMonth) : String.valueOf(dayOfMonth);
-
-                //Formateo el mes obtenido: antepone el 0 si son menores de 10
                 String mesFormateado = (mesActual < 10) ? CERO + String.valueOf(mesActual) : String.valueOf(mesActual);
-
-                //Muestro la fecha con el formato deseado
                 to.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
 
-
             }
-            //Estos valores deben ir en ese orden, de lo contrario no mostrara la fecha actual
-            /**
-             *También puede cargar los valores que usted desee
-             */
         }, year, month, day);
-        //Muestro el widget
         recogerFecha.show();
 
     }
 
+    //Method to check if the input is a number
     public static boolean isNumeric(String cadena) {
 
         boolean resultado;
@@ -228,6 +201,7 @@ public class NewTreatmentActivity extends AppCompatActivity {
         return resultado;
     }
 
+    //On back go to Calendar Activity
     @Override
     public void onBackPressed() {
         Intent profile = new Intent(NewTreatmentActivity.this, CalendarActivity.class);

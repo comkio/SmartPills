@@ -7,6 +7,7 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+//DAO with the queries necessary to interact with our DataBase and the different tables.
 @Dao
 public interface MyDao {
 
@@ -21,7 +22,7 @@ public interface MyDao {
 
     @Query("SELECT * FROM treatmentpill")
     List<TreatmentPill> getAllTreatmentPills();
-    
+
     @Query("SELECT * FROM TreatmentPill WHERE treatmentId LIKE (:treatmentId)")
     List<TreatmentPill> getTreatmentPillByTreatmentId(int treatmentId);
 
@@ -31,15 +32,9 @@ public interface MyDao {
     @Query("SELECT * FROM Pill WHERE id LIKE (:pillId)")
     Pill getPillbyId(int pillId);
 
-    @Query("SELECT pillId FROM TreatmentPill WHERE treatmentId LIKE (:treatmentId)")
-    List<Integer> getPillsForTreatment(int treatmentId);
-
 
     @Insert
     void insertUsers(User... users);
-
-    @Insert
-    void insertPill(Pill... pills);
 
     @Insert
     void insertPills(List<Pill> pills);
@@ -50,8 +45,6 @@ public interface MyDao {
     @Insert
     void insertTreatmentPills(TreatmentPill... treatmentPill);
 
-    @Delete
-    void deleteUser(User user);
 
     @Delete
     void deleteTreatment(Treatment treatment);
@@ -59,8 +52,6 @@ public interface MyDao {
     @Delete
     void deletePill(Pill pill);
 
-    @Delete
-    void deleteTreatmentPill(TreatmentPill treatmentPill);
 
     @Query("DELETE FROM user")
     void resetUser();
@@ -80,8 +71,4 @@ public interface MyDao {
     @Query("SELECT COUNT(*) FROM treatment ")
     int countTreatments();
 
-    @Query("SELECT COUNT(*) FROM treatmentPill ")
-    int countTreatmentPills();
-
-    //pildora por dia
 }

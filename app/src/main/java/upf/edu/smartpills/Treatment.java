@@ -1,18 +1,16 @@
 package upf.edu.smartpills;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
-
+//Class equivalent to the table in the DataBase containing info about each treatment
 @Entity
 public class Treatment {
 
     @PrimaryKey(autoGenerate = true)
-    int id;
+    private int id;
 
-    String treatmentName;
+    private String treatmentName;
 
     public Treatment(String treatmentName) {
         this.treatmentName = treatmentName;

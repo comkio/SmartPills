@@ -6,8 +6,10 @@ import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
+//Class equivalent to the table in the DataBase containing the relation between treatments and pills
+//plus info about duration of the treatment, hour, repetition of each pill...
 @Entity(foreignKeys =
-        {@ForeignKey(entity = Pill.class, parentColumns = "id", childColumns = "pillId",onDelete = CASCADE),
+        {@ForeignKey(entity = Pill.class, parentColumns = "id", childColumns = "pillId", onDelete = CASCADE),
                 @ForeignKey(entity = Treatment.class, parentColumns = "id", childColumns = "treatmentId", onDelete = CASCADE)})
 public class TreatmentPill {
 
@@ -25,7 +27,6 @@ public class TreatmentPill {
     private String to;
 
     private String repetition;
-
 
     public TreatmentPill(int pillId, int treatmentId, String from, String fromHour, String to, String repetition) {
         this.pillId = pillId;
@@ -48,16 +49,8 @@ public class TreatmentPill {
         return pillId;
     }
 
-    public void setPillId(int pillId) {
-        this.pillId = pillId;
-    }
-
     public int getTreatmentId() {
         return treatmentId;
-    }
-
-    public void setTreatmentId(int treatmentId) {
-        this.treatmentId = treatmentId;
     }
 
     public String getFrom() {
@@ -80,28 +73,8 @@ public class TreatmentPill {
         return repetition;
     }
 
-    public void setRepetition(String repetition) {
-        this.repetition = repetition;
-    }
-
     public String getFromHour() {
         return fromHour;
     }
 
-    public void setFromHour(String fromHour) {
-        this.fromHour = fromHour;
-    }
-
-    @Override
-    public String toString() {
-        return "TreatmentPill{" +
-                "id=" + id +
-                ", pillId=" + pillId +
-                ", treatmentId=" + treatmentId +
-                ", from='" + from + '\'' +
-                ", fromHour=" + fromHour +
-                ", to='" + to + '\'' +
-                ", repetition=" + repetition +
-                '}';
-    }
 }

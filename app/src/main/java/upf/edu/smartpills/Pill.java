@@ -1,18 +1,18 @@
 package upf.edu.smartpills;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+//Class equivalent to the table in the DataBase containing info about each pill
 @Entity
 public class Pill {
 
     @PrimaryKey(autoGenerate = true)
-    int id;
+    private int id;
 
-    String name;
+    private String name;
 
-    String quantity;
+    private String quantity;
 
     public Pill(String name, String quantity) {
         this.name = name;
@@ -39,12 +39,4 @@ public class Pill {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return  name + " - " + "18:00";
-    }
 }

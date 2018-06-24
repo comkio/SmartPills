@@ -3,7 +3,6 @@ package upf.edu.smartpills;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,11 +25,13 @@ import java.util.List;
 
 import static upf.edu.smartpills.FirstActivity.db;
 
+//Implement NavigationView for our menu
 public class CalendarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //Declare interactable items
     FloatingActionButton button;
-    TextView day,username;
+    TextView day, username;
     ListView listCalendar;
     CalendarView calendarView;
 
@@ -46,7 +46,7 @@ public class CalendarActivity extends AppCompatActivity
         listCalendar = findViewById(R.id.listCalendar);
         calendarView = findViewById(R.id.calendarView);
 
-        //Menu Icon
+        //Create drawer for the menu and set listener for the menu options
         DrawerLayout myDrawer = findViewById(R.id.myDrawer);
         ActionBarDrawerToggle myToggle = new ActionBarDrawerToggle(
                 this, myDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -56,14 +56,15 @@ public class CalendarActivity extends AppCompatActivity
         NavigationView nv = findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(this);
 
+        //Adapt the UserName that appears in the menu to the one entered in the DataBase
         username = nv.getHeaderView(0).findViewById(R.id.username);
 
         List<User> userList = db.myDao().getAllUsers();
-        if(!userList.isEmpty()) {
+        if (!userList.isEmpty()) {
             username.setText(userList.get(0).getName());
         }
 
-
+        //If the plus button is clicked go to Treatments Activity to add treatments
         button = findViewById(R.id.floatingActionButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +77,13 @@ public class CalendarActivity extends AppCompatActivity
             }
         });
 
-        //CURRENT DATE
+        //Obtain current day and display it below the calendar
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         String[] mydat = mydate.split(",");
         day = findViewById(R.id.textView2);
         day.append(mydat[0]);
 
+        //Obtain pills and fromHour and display them below the calendar
         List<Pill> allpills = db.myDao().getAllPills();
         List<TreatmentPill> alltreatmentpills = db.myDao().getAllTreatmentPills();
         List<String> todaypills = new ArrayList<>();
@@ -94,10 +96,12 @@ public class CalendarActivity extends AppCompatActivity
 
     }
 
+    //Act depending on the item selected in the menu
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
+        //For each item selected in the menu go to its respective activity
         int id = menuItem.getItemId();
 
         if (id == R.id.about) {
@@ -110,14 +114,15 @@ public class CalendarActivity extends AppCompatActivity
             Intent umanual = new Intent(CalendarActivity.this, UserManualActivity.class);
             startActivity(umanual);
             finish();
-            /*CharSequence text = "Works!";
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();*/
+
         } else if (id == R.id.settings) {
 
             Intent profile = new Intent(CalendarActivity.this, SettingsActivity.class);
             startActivity(profile);
             finish();
         } else if (id == R.id.restart) {
+            //In case of restart display Alert and delete all elements in the DataBase before
+            //exiting to the WelcomeActivity
             android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(
                     CalendarActivity.this);
             alert.setTitle("Alert!!");
@@ -151,6 +156,7 @@ public class CalendarActivity extends AppCompatActivity
             startActivity(profile);
             finish();
         } else if (id == R.id.buy) {
+            //In case of refill show an alert and simply display a Toast
             final AlertDialog.Builder mbuilder = new AlertDialog.Builder(CalendarActivity.this);
             mbuilder.setTitle("Pharmacy");
             mbuilder.setMessage("Do you want to refill all your pills?");
@@ -172,6 +178,7 @@ public class CalendarActivity extends AppCompatActivity
         return true;
     }
 
+    //On back pressed close the menu if it's open or exit the app in the other case
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.myDrawer);
@@ -181,7 +188,6 @@ public class CalendarActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
 
 
 }

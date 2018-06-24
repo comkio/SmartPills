@@ -2,16 +2,12 @@ package upf.edu.smartpills;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
 
 public class UserManualActivity extends AppCompatActivity {
-
+    //Activity that shows a really simple description of how to use the application
+    //TextView content is set in the layout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +16,7 @@ public class UserManualActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    //On back pressed go the Calendar activity
     @Override
     public void onBackPressed() {
         Intent profile = new Intent(UserManualActivity.this, CalendarActivity.class);
